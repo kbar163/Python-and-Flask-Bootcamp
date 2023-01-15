@@ -6,9 +6,19 @@
     <title>Basic template</title>
 </head>
 <body>
-    <h1>Welcome to the site {{user_name}}!</h1>
-    <!--We can leverage some pythonic code inside our HTML in order to make our lives easier-->
-    <h2>Initials: {{letters[0]}}{{letters[6]}}</h2> 
-    <h2>Pets: {{puppy_dictionary["puppy_name"]}}</h2>
+    <!-- We can use control flow expressions inside the HTML code this way. -->
+    <ul>
+
+        {% for number in example_list %}
+            <li>{{number}}</li>
+        {% endfor %}
+
+    </ul>
+
+    {% if example_bool %}
+        <p>Condition in if statement is true</p>
+    {% else %}
+        <p>Condition in if statement is false</p>
+    {% endif %}
 </body>
 </html>
