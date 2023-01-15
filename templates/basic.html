@@ -6,6 +6,9 @@
     <title>Basic template</title>
 </head>
 <body>
-    <h1>Welcome to the site</h1>
+    <h1>Welcome to the site {{user_name}}!</h1>
+    <!--We can leverage some pythonic code inside our HTML in order to make our lives easier-->
+    <h2>Initials: {{letters[0]}}{{letters[6]}}</h2> 
+    <h2>Pets: {{puppy_dictionary["puppy_name"]}}</h2>
 </body>
 </html>
