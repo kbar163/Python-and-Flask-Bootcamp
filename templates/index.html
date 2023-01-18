@@ -3,12 +3,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="mt-4 p-5 highlightbox text-muted rounded text-center">
-        <h1>Welcome!</h1>
-        <p>Here to sign up?</p>
-        <a href="{{url_for('signup_form')}}">
-            <button type="button" class="btn btn-outline-primary">Sign up</button>
-        </a>
-    </div>
+    <p>
+        {% if breed %}
+        The breed you entered is {{breed}}
+        Update it in the form below:
+        {% else %}
+        Please enter the breed of your dog:
+        {% endif %}
+    </p>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.breed.label }} {{ form.breed() }}
+        {{ form.breed_submit() }}
+    </form>
 
 {% endblock %}

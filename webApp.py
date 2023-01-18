@@ -1,21 +1,30 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template
+from flask_wtf import FlaskForm
+from wtforms import StringField,SubmitField
 
 #Initializing the Flask application
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'mysecretkey'
 
-#Creating a basic root page, this decorator lets us specify the route's path
-@app.route('/')
+# Creating a flask form by creating a class that inherits from FlaskForm
+class InfoForm(FlaskForm):
+
+    breed = StringField("What is the breed of your dog?")
+    breed_submit = SubmitField("Submit")
+
+
+#Creating a basic root page, this decorator lets us specify the route's path. The methods parameter allows
+#to pass the form to the template.
+@app.route('/',methods=['GET','POST'])
 def index():
-    return render_template('index.html')
+    breed = False
+    form = InfoForm()
 
-@app.route("/signup")
-def signup_form():
-    return render_template('signup.html')
+    if form.validate_on_submit():
+        breed = form.breed.data
+        form.breed.data = ''
 
-@app.route("/thankyou")
-def thank_you():
-    first_name = request.args.get("first_name")
-    return render_template('thankyou.html',first_name=first_name)
+    return render_template('index.html',form=form,breed=breed)
 
 @app.errorhandler(404)
 def page_not_foud(e):
