@@ -14,8 +14,9 @@
 
     <form method="POST">
         {{ form.hidden_tag() }}
-        {{ form.breed.label }} {{ form.breed() }}
-        {{ form.breed_submit() }}
+        {{ form.breed.label }}
+        {{ form.breed(class='form-control-sm') }}
+        {{ form.breed_submit(class="btn btn-primary") }}
     </form>
 
 {% endblock %}
