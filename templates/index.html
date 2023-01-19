@@ -3,20 +3,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <p>
-        {% if breed %}
-        The breed you entered is {{breed}}
-        Update it in the form below:
-        {% else %}
-        Please enter the breed of your dog:
-        {% endif %}
-    </p>
+    <h1 class="display-3 text-center mb-5"> Welcome to the puppy survey </h1>
 
-    <form method="POST">
-        {{ form.hidden_tag() }}
-        {{ form.breed.label }}
-        {{ form.breed(class='form-control-sm') }}
-        {{ form.breed_submit(class="btn btn-primary") }}
-    </form>
+    <div class="text-center">
+        
 
+        <form method="POST">
+            {{form.hidden_tag()}}
+            {{form.breed.label}} {{form.breed(class="form-control-sm mb-3")}}
+            <br>
+            {{form.neutered.label}} {{form.neutered(class="form-check-input mb-3")}}
+            <br>
+            {{form.food_choice.label}} {{form.food_choice(class="form-select input-small mb-3")}}
+            <br>
+            {{form.temper.label}} {{form.temper}}
+            <br>
+            Any other feedback?
+            <br>
+            {{form.feedback(class="form-control mb-3")}}
+            <br>
+            {{form.submit(class="btn btn-primary mb-3")}}
+        </form>
+    </div>
 {% endblock %}
