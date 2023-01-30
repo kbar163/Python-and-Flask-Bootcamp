@@ -1,24 +1,15 @@
+import os
 from flask import Flask,render_template,session,redirect,url_for,flash
-from flask_wtf import FlaskForm
-from wtforms import (StringField,SubmitField,BooleanField,
-                    RadioField,SelectField,TextAreaField)
-from wtforms.validators import DataRequired
+from custom_forms import InfoForm
+
+#Stating the base directory.We're getting the absolute path of the current file.
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 #Initializing the Flask application
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecretkey'
 
-# Creating a flask form by creating a class that inherits from FlaskForm
-class InfoForm(FlaskForm):
-    #using the data required validator, autochecks on submit.
-    breed = StringField("What is the breed of your dog?",validators=[DataRequired()]) 
-    neutered = BooleanField("Is your dog neutered?")
-    temper = RadioField("How would you describe the temper of your dog?",
-                        choices=[("Docile","Docile"),("Defensive","Defensive")])
-    food_choice = SelectField(u"Pick your dog's favourite food:",
-                             choices=[("Dry food","Dry food"),("Wet food","Wet food"),("Mixed food","Mixed food")])
-    feedback = TextAreaField()
-    submit = SubmitField("Submit")
+#####################################
 
 
 #Creating a basic root page, this decorator lets us specify the route's path. The methods parameter allows
